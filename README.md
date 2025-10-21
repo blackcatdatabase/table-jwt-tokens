@@ -78,8 +78,8 @@ erDiagram
     BOOLEAN revoked
     JSON meta
   }
-  JWT_TOKENS }o--|| JWT_TOKENS : (replaced_by)
-  JWT_TOKENS }o--|| USERS : (user_id)
+  JWT_TOKENS }o--|| JWT_TOKENS : "replaced_by"
+  JWT_TOKENS }o--|| USERS : "user_id"
 ```
 
 ## Indexes
