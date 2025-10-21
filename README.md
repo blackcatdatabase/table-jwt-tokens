@@ -2,7 +2,7 @@
 
 ![SQL](https://img.shields.io/badge/SQL-MySQL%208.0%2B-4479A1?logo=mysql&logoColor=white) ![License](https://img.shields.io/badge/license-BlackCat%20Proprietary-red) ![Status](https://img.shields.io/badge/status-stable-informational) ![Generated](https://img.shields.io/badge/generated-from%20schema--map-blue)
 
-> Schema package for table **jwt_tokens** (repo: $slug).
+> Schema package for table **jwt_tokens** (repo: `jwt-tokens`).
 
 ## Files
 ```
@@ -43,7 +43,7 @@ mysql -h 127.0.0.1 -P 3307 -u root -proot app < schema/030_foreign_keys.sql
 | token_hash | BINARY(32) | NO | — |  |
 | token_hash_algo | VARCHAR(50) | YES | — |  |
 | token_hash_key_version | VARCHAR(64) | YES | — |  |
-| type | ENUM(''refresh'',''api'') | NO | '' |  |
+| type | ENUM('refresh','api') | NO | '' |  |
 | scopes | VARCHAR(255) | YES | — |  |
 | created_at | DATETIME(6) | NO | CURRENT_TIMESTAMP(6) |  |
 | expires_at | DATETIME(6) | YES | — |  |
@@ -61,20 +61,20 @@ mysql -h 127.0.0.1 -P 3307 -u root -proot app < schema/030_foreign_keys.sql
 ```mermaid
 erDiagram
   JWT_TOKENS {
-    BIGINT id PK
-    CHAR(36) jti
-    BIGINT user_id
-    BINARY(32) token_hash
-    VARCHAR(50) token_hash_algo
-    VARCHAR(64) token_hash_key_version
-    ENUM(''refresh'',''api'') type
-    VARCHAR(255) scopes
-    DATETIME(6) created_at
-    DATETIME(6) expires_at
-    DATETIME(6) last_used_at
-    BINARY(32) ip_hash
-    VARCHAR(64) ip_hash_key_version
-    BIGINT replaced_by
+    INT id PK
+    VARCHAR jti
+    INT user_id
+    BLOB token_hash
+    VARCHAR token_hash_algo
+    VARCHAR token_hash_key_version
+    ENUM type
+    VARCHAR scopes
+    DATETIME created_at
+    DATETIME expires_at
+    DATETIME last_used_at
+    BLOB ip_hash
+    VARCHAR ip_hash_key_version
+    INT replaced_by
     BOOLEAN revoked
     JSON meta
   }
