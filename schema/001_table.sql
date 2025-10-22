@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS jwt_tokens (
   token_hash BINARY(32) NOT NULL,
   token_hash_algo VARCHAR(50) NULL,
   token_hash_key_version VARCHAR(64) NULL,
-  type ENUM(''refresh'',''api'') NOT NULL DEFAULT ''refresh'',
+  type ENUM('refresh','api') NOT NULL DEFAULT 'refresh',
   scopes VARCHAR(255) NULL,
   created_at DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
   expires_at DATETIME(6) NULL,

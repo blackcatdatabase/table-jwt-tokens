@@ -12,7 +12,7 @@ Refresh/API token registry with revocation support.
 | token_hash | BINARY(32) | NO | — | Hashed token. | PII: hashed |
 | token_hash_algo | VARCHAR(50) | YES | — | Hash algorithm. |  |
 | token_hash_key_version | VARCHAR(64) | YES | — | Key version used for token hashing. |  |
-| type | ENUM('refresh','api') | NO | ''refresh'' | Token kind. | enum: refresh, api |
+| type | ENUM('refresh','api') | NO | 'refresh' | Token kind. | enum: refresh, api |
 | scopes | VARCHAR(255) | YES | — | Space/comma separated scopes. |  |
 | created_at | DATETIME(6) | NO | CURRENT_TIMESTAMP(6) | Creation timestamp (UTC). |  |
 | expires_at | DATETIME(6) | YES | — | Expiration timestamp (UTC). |  |

@@ -45,7 +45,7 @@ mysql -h 127.0.0.1 -P 3307 -u root -proot app < schema/030_foreign_keys.sql
 | token_hash | BINARY(32) | NO | — |  |
 | token_hash_algo | VARCHAR(50) | YES | — |  |
 | token_hash_key_version | VARCHAR(64) | YES | — |  |
-| type | ENUM('refresh','api') | NO | '' |  |
+| type | ENUM('refresh','api') | NO | 'refresh' |  |
 | scopes | VARCHAR(255) | YES | — |  |
 | created_at | DATETIME(6) | NO | CURRENT_TIMESTAMP(6) |  |
 | expires_at | DATETIME(6) | YES | — |  |
