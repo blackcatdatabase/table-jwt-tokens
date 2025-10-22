@@ -1,4 +1,4 @@
--- Auto-generated from schema-map.psd1 (map@1e83bb6)
+-- Auto-generated from schema-map.psd1 (map@6cefe8e)
 -- table: jwt_tokens
 ALTER TABLE jwt_tokens ADD CONSTRAINT fk_jwt_tokens_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL;
 
