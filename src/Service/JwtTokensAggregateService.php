@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace BlackCat\Database\Packages\JwtTokens\Service;
 
-use BlackCat\Core\Database\Database;
+use BlackCat\Core\Database;
 use BlackCat\Database\Packages\JwtTokens\Dto\JwtTokenDto;
 use BlackCat\Database\Packages\JwtTokens\Mapper\JwtTokenDtoMapper;
 use BlackCat\Database\Packages\JwtTokens\Repository\JwtTokenRepository;
