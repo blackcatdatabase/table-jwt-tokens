@@ -6,7 +6,7 @@ namespace BlackCat\Database\Packages\JwtTokens;
 final class Definitions {
     // --- základní metadata ---
     public static function table(): string { return 'jwt_tokens'; }
-    public static function contractView(): string { return 'v_jwt_tokens_contract'; }
+    public static function contractView(): string { return 'vw_jwt_tokens'; }
     /** @return string[] */
     public static function columns(): array { return [ 'id', 'jti', 'user_id', 'token_hash', 'token_hash_algo', 'token_hash_key_version', 'type', 'scopes', 'created_at', 'expires_at', 'last_used_at', 'ip_hash', 'ip_hash_key_version', 'replaced_by', 'revoked', 'meta' ]; }
     public static function pk(): string { return 'id'; }

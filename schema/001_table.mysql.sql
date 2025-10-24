@@ -1,5 +1,6 @@
--- Auto-generated from schema-map.psd1 (map@6cefe8e)
--- table: jwt_tokens
+-- Auto-generated from schema-map-mysql.psd1 (map@mtime:2025-10-24T09:13:35Z)
+-- engine: mysql
+-- table:  jwt_tokens
 CREATE TABLE IF NOT EXISTS jwt_tokens (
   id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
   jti CHAR(36) NOT NULL UNIQUE,

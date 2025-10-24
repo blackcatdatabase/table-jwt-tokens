@@ -6,7 +6,7 @@ namespace BlackCat\Database\Packages\JwtTokens;
 /**
  * Bezpečný builder WHERE/ORDER/LIMIT.
  * - whitelist filtrů: [ 'id', 'jti', 'user_id', 'token_hash', 'token_hash_algo', 'token_hash_key_version', 'type', 'scopes', 'created_at', 'expires_at', 'last_used_at', 'ip_hash', 'ip_hash_key_version', 'replaced_by', 'revoked', 'meta' ]
- * - whitelist pro LIKE hledání: [ 'jti', 'token_hash_algo', 'token_hash_key_version', 'scopes', 'ip_hash_key_version' ]
+ * - whitelist pro LIKE hledání: [ 'jti', 'token_hash_algo', 'token_hash_key_version', 'type', 'scopes', 'ip_hash_key_version' ]
  */
 final class Criteria {
     /** @var array<string,mixed> */
@@ -61,7 +61,7 @@ final class Criteria {
 
         // fulltext/LIKE (přes whitelist)
         if ($this->search !== null) {
-            $searchCols = [ 'jti', 'token_hash_algo', 'token_hash_key_version', 'scopes', 'ip_hash_key_version' ];
+            $searchCols = [ 'jti', 'token_hash_algo', 'token_hash_key_version', 'type', 'scopes', 'ip_hash_key_version' ];
             $likeParts = [];
             foreach ($searchCols as $i=>$c) {
                 if ($c === '') continue;
