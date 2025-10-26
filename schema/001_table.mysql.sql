@@ -1,4 +1,4 @@
--- Auto-generated from schema-map-mysql.psd1 (map@mtime:2025-10-24T09:13:35Z)
+-- Auto-generated from schema-map-mysql.psd1 (map@38d5403)
 -- engine: mysql
 -- table:  jwt_tokens
 CREATE TABLE IF NOT EXISTS jwt_tokens (
@@ -11,6 +11,7 @@ CREATE TABLE IF NOT EXISTS jwt_tokens (
   type ENUM('refresh','api') NOT NULL DEFAULT 'refresh',
   scopes VARCHAR(255) NULL,
   created_at DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
+  version INT UNSIGNED NOT NULL DEFAULT 0,
   expires_at DATETIME(6) NULL,
   last_used_at DATETIME(6) NULL,
   ip_hash BINARY(32) NULL,

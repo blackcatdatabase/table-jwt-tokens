@@ -1,9 +1,9 @@
--- Auto-generated from schema-views-mysql.psd1 (map@mtime:2025-10-24T09:19:46Z)
+-- Auto-generated from schema-views-mysql.psd1 (map@38d5403)
 -- engine: mysql
 -- table:  jwt_tokens
 -- Contract view for [jwt_tokens]
--- Hides token_hash.
-CREATE OR REPLACE VIEW vw_jwt_tokens AS
+-- Hides token_hash. Adds HEX helper for ip_hash.
+CREATE OR REPLACE SQL SECURITY INVOKER VIEW vw_jwt_tokens AS
 SELECT
   id,
   jti,
@@ -16,6 +16,7 @@ SELECT
   expires_at,
   last_used_at,
   ip_hash,
+  HEX(ip_hash) AS ip_hash_hex,
   ip_hash_key_version,
   replaced_by,
   revoked,
