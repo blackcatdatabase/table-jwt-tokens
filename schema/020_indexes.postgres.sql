@@ -1,4 +1,4 @@
--- Auto-generated from schema-map-postgres.psd1 (map@38d5403)
+-- Auto-generated from schema-map-postgres.psd1 (map@c5e4097)
 -- engine: postgres
 -- table:  jwt_tokens
 CREATE INDEX IF NOT EXISTS idx_jwt_user ON jwt_tokens (user_id);

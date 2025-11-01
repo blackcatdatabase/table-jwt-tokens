@@ -1,4 +1,4 @@
--- Auto-generated from schema-views-postgres.psd1 (map@38d5403)
+-- Auto-generated from schema-views-postgres.psd1 (map@c5e4097)
 -- engine: postgres
 -- table:  jwt_tokens
 -- Contract view for [jwt_tokens]
@@ -14,6 +14,7 @@ SELECT
   type,
   scopes,
   created_at,
+  version,
   expires_at,
   last_used_at,
   ip_hash,
@@ -21,5 +22,6 @@ SELECT
   ip_hash_key_version,
   replaced_by,
   revoked,
-  meta
+  meta,
+  encode(token_hash, 'hex') AS token_hash_hex
 FROM jwt_tokens;
