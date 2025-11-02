@@ -1,4 +1,4 @@
--- Auto-generated from schema-map-postgres.psd1 (map@c5e4097)
+-- Auto-generated from schema-map-postgres.psd1 (map@db2f8b8)
 -- engine: postgres
 -- table:  jwt_tokens
 CREATE TABLE IF NOT EXISTS jwt_tokens (

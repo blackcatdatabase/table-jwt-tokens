@@ -1,4 +1,4 @@
--- Auto-generated from schema-views-postgres.psd1 (map@c5e4097)
+-- Auto-generated from schema-views-postgres.psd1 (map@db2f8b8)
 -- engine: postgres
 -- table:  jwt_tokens
 -- Contract view for [jwt_tokens]
@@ -18,10 +18,10 @@ SELECT
   expires_at,
   last_used_at,
   ip_hash,
-  encode(ip_hash, 'hex') AS ip_hash_hex,
+  UPPER(encode(ip_hash,'hex'))::char(32) AS ip_hash_hex,
   ip_hash_key_version,
   replaced_by,
   revoked,
   meta,
-  encode(token_hash, 'hex') AS token_hash_hex
+  UPPER(encode(token_hash,'hex'))::char(64) AS token_hash_hex
 FROM jwt_tokens;
