@@ -2,7 +2,7 @@
 
 ![SQL](https://img.shields.io/badge/SQL-MySQL%208.0%2B-4479A1?logo=mysql&logoColor=white) ![License](https://img.shields.io/badge/license-BlackCat%20Proprietary-red) ![Status](https://img.shields.io/badge/status-stable-informational) ![Generated](https://img.shields.io/badge/generated-from%20schema--map-blue)
 
-<!-- Auto-generated from schema-map.psd1 @ 6cefe8e (2025-10-22T20:27:41+02:00) -->
+<!-- Auto-generated from schema-map-postgres.psd1 @ 62c9c93 (2025-11-20T21:38:11+01:00) -->
 
 > Schema package for table **jwt_tokens** (repo: `jwt-tokens`).
 
@@ -10,7 +10,7 @@
 ```
 schema/
   001_table.sql
-  # (no deferred indexes declared in map)
+  020_indexes.sql
   030_foreign_keys.sql
 ```
 
@@ -18,12 +18,14 @@ schema/
 ```bash
 # Apply schema (Linux/macOS):
 mysql -h "$DB_HOST" -u "$DB_USER" -p"$DB_PASS" "$DB_NAME" < schema/001_table.sql
+mysql -h "$DB_HOST" -u "$DB_USER" -p"$DB_PASS" "$DB_NAME" < schema/020_indexes.sql
 mysql -h "$DB_HOST" -u "$DB_USER" -p"$DB_PASS" "$DB_NAME" < schema/030_foreign_keys.sql
 ```
 
 ```powershell
 # Apply schema (Windows PowerShell):
 mysql -h $env:DB_HOST -u $env:DB_USER -p$env:DB_PASS $env:DB_NAME < schema/001_table.sql
+mysql -h $env:DB_HOST -u $env:DB_USER -p$env:DB_PASS $env:DB_NAME < schema/020_indexes.sql
 mysql -h $env:DB_HOST -u $env:DB_USER -p$env:DB_PASS $env:DB_NAME < schema/030_foreign_keys.sql
 ```
 
@@ -33,28 +35,30 @@ mysql -h $env:DB_HOST -u $env:DB_USER -p$env:DB_PASS $env:DB_NAME < schema/030_f
 docker run --rm -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=app -p 3307:3306 -d mysql:8
 sleep 15
 mysql -h 127.0.0.1 -P 3307 -u root -proot app < schema/001_table.sql
+mysql -h 127.0.0.1 -P 3307 -u root -proot app < schema/020_indexes.sql
 mysql -h 127.0.0.1 -P 3307 -u root -proot app < schema/030_foreign_keys.sql
 ```
 
 ## Columns
 | Column | Type | Null | Default | Extra |
 |-------:|:-----|:----:|:--------|:------|
-| id | BIGINT UNSIGNED | — | — | AUTO_INCREMENT, PK |
+| id | BIGINT | — | AS | PK |
 | jti | CHAR(36) | NO | — |  |
-| user_id | BIGINT UNSIGNED | YES | — |  |
-| token_hash | BINARY(32) | NO | — |  |
+| user_id | BIGINT | YES | — |  |
+| token_hash | BYTEA | NO | — |  |
 | token_hash_algo | VARCHAR(50) | YES | — |  |
 | token_hash_key_version | VARCHAR(64) | YES | — |  |
-| type | ENUM('refresh','api') | NO | 'refresh' |  |
+| type | TEXT | NO | 'refresh' |  |
 | scopes | VARCHAR(255) | YES | — |  |
-| created_at | DATETIME(6) | NO | CURRENT_TIMESTAMP(6) |  |
-| expires_at | DATETIME(6) | YES | — |  |
-| last_used_at | DATETIME(6) | YES | — |  |
-| ip_hash | BINARY(32) | YES | — |  |
+| created_at | TIMESTAMPTZ(6) | NO | CURRENT_TIMESTAMP(6) |  |
+| version | INTEGER | NO | 0 |  |
+| expires_at | TIMESTAMPTZ(6) | YES | — |  |
+| last_used_at | TIMESTAMPTZ(6) | YES | — |  |
+| ip_hash | BYTEA | YES | — |  |
 | ip_hash_key_version | VARCHAR(64) | YES | — |  |
-| replaced_by | BIGINT UNSIGNED | YES | — |  |
-| revoked | BOOLEAN | NO | 0 |  |
-| meta | JSON | YES | — |  |
+| replaced_by | BIGINT | YES | — |  |
+| revoked | BOOLEAN | NO | FALSE |  |
+| meta | JSONB | YES | — |  |
 
 ## Relationships
 - FK → **jwt_tokens** via (replaced_by) (ON DELETE SET NULL).
@@ -66,26 +70,27 @@ erDiagram
     INT id PK
     VARCHAR jti
     INT user_id
-    BLOB token_hash
+    BYTEA token_hash
     VARCHAR token_hash_algo
     VARCHAR token_hash_key_version
-    ENUM type
+    VARCHAR type
     VARCHAR scopes
-    DATETIME created_at
-    DATETIME expires_at
-    DATETIME last_used_at
-    BLOB ip_hash
+    TIMESTAMPTZ created_at
+    INTEGER version
+    TIMESTAMPTZ expires_at
+    TIMESTAMPTZ last_used_at
+    BYTEA ip_hash
     VARCHAR ip_hash_key_version
     INT replaced_by
     BOOLEAN revoked
-    JSON meta
+    JSONB meta
   }
   JWT_TOKENS }o--|| JWT_TOKENS : "replaced_by"
   JWT_TOKENS }o--|| USERS : "user_id"
 ```
 
 ## Indexes
-- No deferred indexes declared for this table.
+- 6 deferred index statement(s) in schema/020_indexes.sql.
 
 ## Notes
 - Generated from the umbrella repository **blackcat-database** using `scripts/schema-map.psd1`.

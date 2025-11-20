@@ -1,4 +1,4 @@
--- Auto-generated from schema-map-postgres.psd1 (map@9d3471b)
+-- Auto-generated from schema-map-postgres.psd1 (map@62c9c93)
 -- engine: postgres
 -- table:  jwt_tokens
 CREATE TABLE IF NOT EXISTS jwt_tokens (
@@ -21,5 +21,6 @@ CREATE TABLE IF NOT EXISTS jwt_tokens (
   revoked BOOLEAN NOT NULL DEFAULT FALSE,
   meta JSONB NULL,
   CONSTRAINT uq_jwt_token_hash UNIQUE (token_hash),
-  CONSTRAINT chk_jwt_type CHECK (type IN ('refresh','api'))
+  CONSTRAINT chk_jwt_type CHECK (type IN ('refresh','api')),
+  CONSTRAINT chk_jwt_expires_after_created CHECK (expires_at IS NULL OR expires_at >= created_at)
 );

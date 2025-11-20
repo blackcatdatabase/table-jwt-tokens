@@ -1,4 +1,4 @@
--- Auto-generated from schema-map-postgres.psd1 (map@9d3471b)
+-- Auto-generated from schema-map-postgres.psd1 (map@62c9c93)
 -- engine: postgres
 -- table:  jwt_tokens
 CREATE INDEX IF NOT EXISTS idx_jwt_user ON jwt_tokens (user_id);
@@ -10,3 +10,5 @@ CREATE INDEX IF NOT EXISTS idx_jwt_revoked_user ON jwt_tokens (revoked, user_id)
 CREATE INDEX IF NOT EXISTS idx_jwt_last_used ON jwt_tokens (last_used_at);
 
 CREATE INDEX IF NOT EXISTS idx_jwt_replaced_by ON jwt_tokens (replaced_by);
+
+CREATE INDEX IF NOT EXISTS idx_jwt_active_sweep ON jwt_tokens (revoked, expires_at);
