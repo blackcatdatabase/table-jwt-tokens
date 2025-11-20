@@ -11,6 +11,8 @@ SELECT
   user_id,
   token_hash_algo,
   token_hash_key_version,
+  token_hash,
+  UPPER(encode(token_hash,'hex')) AS token_hash_hex,
   type,
   scopes,
   created_at,
@@ -18,10 +20,9 @@ SELECT
   expires_at,
   last_used_at,
   ip_hash,
-  UPPER(encode(ip_hash,'hex'))::char(32) AS ip_hash_hex,
+  UPPER(encode(ip_hash,'hex')) AS ip_hash_hex,
   ip_hash_key_version,
   replaced_by,
   revoked,
-  meta,
-  UPPER(encode(token_hash,'hex'))::char(64) AS token_hash_hex
+  meta
 FROM jwt_tokens;
