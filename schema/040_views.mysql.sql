@@ -1,6 +1,7 @@
--- Auto-generated from schema-views-mysql.psd1 (map@62c9c93)
+-- Auto-generated from schema-views-mysql.psd1 (map@mtime:2025-11-27T15:35:35Z)
 -- engine: mysql
 -- table:  jwt_tokens
+
 -- Contract view for [jwt_tokens]
 -- Exposes token hash + hex helper and ip hash hex.
 CREATE OR REPLACE ALGORITHM=MERGE SQL SECURITY INVOKER VIEW vw_jwt_tokens AS
@@ -11,8 +12,7 @@ SELECT
   user_id,
   token_hash_algo,
   token_hash_key_version,
-  token_hash,
-  CAST(LPAD(HEX(token_hash), 64, '0') AS CHAR(64)) AS token_hash_hex,
+  CAST(UPPER(SHA2(token_hash, 256)) AS CHAR(64)) AS token_hash_hex,
   `type`,
   scopes,
   created_at,
