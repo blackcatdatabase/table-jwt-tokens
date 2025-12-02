@@ -67,7 +67,6 @@ SELECT
   user_id,
   token_hash_algo,
   token_hash_key_version,
-  token_hash,
   UPPER(encode(token_hash,'hex')) AS token_hash_hex,
   type,
   scopes,
@@ -118,7 +117,7 @@ SQL;
         $hasTable = SchemaIntrospector::hasTable($db, $d, $table);
         $hasView  = SchemaIntrospector::hasView($db, $d, $view);
 
-        // Quick index/FK check – generator injects names (case-sensitive per DB)
+        // Quick index/FK check â€“ generator injects names (case-sensitive per DB)
         $expectedIdx = [ 'idx_jwt_replaced_by' ];
         if ($d->isMysql()) {
             // Drop PG-only index naming patterns (e.g., GIN/GiST)

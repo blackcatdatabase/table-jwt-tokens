@@ -1,4 +1,4 @@
--- Auto-generated from schema-views-postgres.psd1 (map@mtime:2025-11-27T15:36:13Z)
+-- Auto-generated from schema-views-postgres.yaml (map@94ebe6c)
 -- engine: postgres
 -- table:  jwt_tokens
 
@@ -12,7 +12,6 @@ SELECT
   user_id,
   token_hash_algo,
   token_hash_key_version,
-  token_hash,
   UPPER(encode(token_hash,'hex')) AS token_hash_hex,
   type,
   scopes,
