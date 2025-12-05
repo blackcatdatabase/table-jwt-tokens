@@ -118,7 +118,7 @@ SQL;
         $hasView  = SchemaIntrospector::hasView($db, $d, $view);
 
         // Quick index/FK check â€“ generator injects names (case-sensitive per DB)
-        $expectedIdx = [ 'idx_jwt_active_sweep', 'idx_jwt_expires', 'idx_jwt_last_used', 'idx_jwt_replaced_by', 'idx_jwt_revoked_user', 'idx_jwt_user' ];
+        $expectedIdx = [ 'idx_jwt_replaced_by' ];
         if ($d->isMysql()) {
             // Drop PG-only index naming patterns (e.g., GIN/GiST)
             $expectedIdx = array_values(array_filter(
@@ -151,7 +151,7 @@ SQL;
             'columns'     => Definitions::columns(),
             'version'     => $this->version(),
             'dialects'    => [ 'mysql', 'postgres' ],
-            'indexes'     => [ 'idx_jwt_active_sweep', 'idx_jwt_expires', 'idx_jwt_last_used', 'idx_jwt_replaced_by', 'idx_jwt_revoked_user', 'idx_jwt_user' ],
+            'indexes'     => [ 'idx_jwt_replaced_by' ],
             'foreignKeys' => [ 'fk_jwt_tokens_replaced_by', 'fk_jwt_tokens_user' ],
         ];
     }

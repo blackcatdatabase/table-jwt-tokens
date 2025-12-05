@@ -38,7 +38,7 @@ final class Criteria extends BaseCriteria
     /** Columns used for full-text LIKE/ILIKE searches. */
     protected function searchable(): array
     {
-        return [ 'jti', 'token_hash_algo', 'token_hash_key_version', 'type', 'scopes', 'ip_hash_key_version' ];
+        return [ 'jti', 'token_hash_algo', 'token_hash_key_version', 'scopes', 'ip_hash_key_version' ];
     }
 
 /** Columns allowed in ORDER BY (falls back to filterable() when empty). */
