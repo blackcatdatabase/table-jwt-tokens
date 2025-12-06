@@ -1,6 +1,7 @@
--- Auto-generated from schema-views-postgres.psd1 (map@62c9c93)
+-- Auto-generated from schema-views-postgres.yaml (map@sha1:EDC13878AE5F346E7EAD2CF0A484FEB7E68F6CDD)
 -- engine: postgres
 -- table:  jwt_tokens
+
 -- Contract view for [jwt_tokens]
 -- Hides token_hash; adds hex helper and jti as text.
 CREATE OR REPLACE VIEW vw_jwt_tokens AS
@@ -11,7 +12,6 @@ SELECT
   user_id,
   token_hash_algo,
   token_hash_key_version,
-  token_hash,
   UPPER(encode(token_hash,'hex')) AS token_hash_hex,
   type,
   scopes,

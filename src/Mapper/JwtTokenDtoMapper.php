@@ -17,7 +17,7 @@ use BlackCat\Database\Support\DtoHydrator;
 final class JwtTokenDtoMapper
 {
     /** @var array<string,string> Column -> DTO property */
-    private const COL_TO_PROP = [ 'user_id' => 'userId', 'token_hash' => 'tokenHash', 'token_hash_algo' => 'tokenHashAlgo', 'token_hash_key_version' => 'tokenHashKeyVersion', 'created_at' => 'createdAt', 'expires_at' => 'expiresAt', 'last_used_at' => 'lastUsedAt', 'ip_hash' => 'ipHash', 'ip_hash_key_version' => 'ipHashKeyVersion', 'replaced_by' => 'replacedBy' ];
+    private const COL_TO_PROP = [ 'id' => 'id', 'jti' => 'jti', 'user_id' => 'userId', 'token_hash' => 'tokenHash', 'token_hash_algo' => 'tokenHashAlgo', 'token_hash_key_version' => 'tokenHashKeyVersion', 'type' => 'type', 'scopes' => 'scopes', 'created_at' => 'createdAt', 'version' => 'version', 'expires_at' => 'expiresAt', 'last_used_at' => 'lastUsedAt', 'ip_hash' => 'ipHash', 'ip_hash_key_version' => 'ipHashKeyVersion', 'replaced_by' => 'replacedBy', 'revoked' => 'revoked', 'meta' => 'meta' ];
 
     /** @var string[] */
     private const BOOL_COLS   = [ 'revoked' ];
@@ -39,13 +39,8 @@ final class JwtTokenDtoMapper
 
     private static function tz(): DateTimeZone
     {
-        if (self::$tzObj instanceof DateTimeZone) {
-            return self::$tzObj;
-        }
-        try {
+        if (!(self::$tzObj instanceof DateTimeZone)) {
             self::$tzObj = new DateTimeZone(self::TZ);
-        } catch (\Throwable) {
-            self::$tzObj = new DateTimeZone('UTC');
         }
         return self::$tzObj;
     }
