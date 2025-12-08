@@ -5,21 +5,21 @@ Refresh/API token registry with revocation support.
 ## Columns
 | Column | Type | Null | Default | Description |
 | --- | --- | --- | --- | --- |
-| created_at | TIMESTAMPTZ(6) | NO | CURRENT_TIMESTAMP(6) | Creation timestamp (UTC). |
-| expires_at | TIMESTAMPTZ(6) | YES |  | Expiration timestamp (UTC). |
+| created_at | DATETIME(6) | NO | CURRENT_TIMESTAMP(6) | Creation timestamp (UTC). |
+| expires_at | DATETIME(6) | YES |  | Expiration timestamp (UTC). |
 | id | BIGINT | NO |  | Surrogate primary key. |
-| ip_hash | BYTEA | YES |  | Hashed client IP. |
+| ip_hash | BINARY(32) | YES |  | Hashed client IP. |
 | ip_hash_key_version | VARCHAR(64) | YES |  | Key version for ip_hash. |
 | jti | CHAR(36) | NO |  | JWT ID (unique). |
-| last_used_at | TIMESTAMPTZ(6) | YES |  | Last usage (UTC). |
-| meta | JSONB | YES |  | Additional JSON metadata. |
+| last_used_at | DATETIME(6) | YES |  | Last usage (UTC). |
+| meta | JSON | YES |  | Additional JSON metadata. |
 | replaced_by | BIGINT | YES |  | Newer token id (token rotation). |
-| revoked | BOOLEAN | NO | FALSE | Revocation flag. |
+| revoked | BOOLEAN | NO | 0 | Revocation flag. |
 | scopes | VARCHAR(255) | YES |  | Space/comma separated scopes. |
-| token_hash | BYTEA | NO |  | Hashed token. |
+| token_hash | BINARY(32) | NO |  | Hashed token. |
 | token_hash_algo | VARCHAR(50) | YES |  | Hash algorithm. |
 | token_hash_key_version | VARCHAR(64) | YES |  | Key version used for token hashing. |
-| type | TEXT | NO | refresh | Token kind. (enum: refresh, api) |
+| type | ENUM('refresh','api') | NO | refresh | Token kind. (enum: refresh, api) |
 | user_id | BIGINT | YES |  | User (FK users.id), optional. |
 
 ## Engine Details
@@ -77,5 +77,5 @@ Foreign keys:
 ## Views
 | View | Engine | Flags | File |
 | --- | --- | --- | --- |
-| vw_jwt_tokens | mysql | algorithm=MERGE, security=INVOKER | [packages\jwt-tokens\schema\040_views.mysql.sql](https://github.com/blackcatacademy/blackcat-database/packages/jwt-tokens/schema/040_views.mysql.sql) |
-| vw_jwt_tokens | postgres |  | [packages\jwt-tokens\schema\040_views.postgres.sql](https://github.com/blackcatacademy/blackcat-database/packages/jwt-tokens/schema/040_views.postgres.sql) |
+| vw_jwt_tokens | mysql | algorithm=MERGE, security=INVOKER | [schema\040_views.mysql.sql](schema\040_views.mysql.sql) |
+| vw_jwt_tokens | postgres |  | [schema\040_views.postgres.sql](schema\040_views.postgres.sql) |
