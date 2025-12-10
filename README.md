@@ -100,8 +100,8 @@ graph LR
 _No engine differences detected._
 
 ## Constraints Snapshot
-- `revoked` – default=mysql: 0 / postgres: FALSE
 - `created_at` – default=CURRENT_TIMESTAMP(6)
+- `revoked` – default=mysql: 0 / postgres: FALSE
 - `type` – default=refresh, enum
 
 ## Schema Files
