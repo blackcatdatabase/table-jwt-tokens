@@ -101,7 +101,7 @@ _No engine differences detected._
 
 ## Constraints Snapshot
 - `created_at` – default=CURRENT_TIMESTAMP(6)
-- `revoked` – default=FALSE
+- `revoked` – default=mysql: 0 / postgres: FALSE
 - `type` – default=refresh, enum
 
 ## Schema Files
