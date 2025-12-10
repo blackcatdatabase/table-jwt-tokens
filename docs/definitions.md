@@ -14,7 +14,7 @@ Refresh/API token registry with revocation support.
 | last_used_at | mysql: DATETIME(6) / postgres: TIMESTAMPTZ(6) | YES |  | Last usage (UTC). |
 | meta | mysql: JSON / postgres: JSONB | YES |  | Additional JSON metadata. |
 | replaced_by | BIGINT | YES |  | Newer token id (token rotation). |
-| revoked | BOOLEAN | NO | FALSE | Revocation flag. |
+| revoked | BOOLEAN | NO | mysql: 0 / postgres: FALSE | Revocation flag. |
 | scopes | VARCHAR(255) | YES |  | Space/comma separated scopes. |
 | token_hash | mysql: BINARY(32) / postgres: BYTEA | NO |  | Hashed token. |
 | token_hash_algo | VARCHAR(50) | YES |  | Hash algorithm. |
@@ -77,5 +77,5 @@ Foreign keys:
 ## Views
 | View | Engine | Flags | File |
 | --- | --- | --- | --- |
-| vw_jwt_tokens | mysql | algorithm=MERGE, security=INVOKER | [schema\040_views.mysql.sql](schema\040_views.mysql.sql) |
-| vw_jwt_tokens | postgres |  | [schema\040_views.postgres.sql](schema\040_views.postgres.sql) |
+| vw_jwt_tokens | mysql | algorithm=MERGE, security=INVOKER | [../schema/040_views.mysql.sql](../schema/040_views.mysql.sql) |
+| vw_jwt_tokens | postgres |  | [../schema/040_views.postgres.sql](../schema/040_views.postgres.sql) |
