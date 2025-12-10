@@ -5,22 +5,22 @@ Refresh/API token registry with revocation support.
 ## Columns
 | Column | Type | Null | Default | Description |
 | --- | --- | --- | --- | --- |
-| created_at | mysql: DATETIME(6) / postgres: TIMESTAMPTZ(6) | NO | CURRENT_TIMESTAMP(6) | Creation timestamp (UTC). |
-| expires_at | mysql: DATETIME(6) / postgres: TIMESTAMPTZ(6) | YES |  | Expiration timestamp (UTC). |
 | id | BIGINT | NO |  | Surrogate primary key. |
-| ip_hash | mysql: BINARY(32) / postgres: BYTEA | YES |  | Hashed client IP. |
-| ip_hash_key_version | VARCHAR(64) | YES |  | Key version for ip_hash. |
 | jti | CHAR(36) | NO |  | JWT ID (unique). |
-| last_used_at | mysql: DATETIME(6) / postgres: TIMESTAMPTZ(6) | YES |  | Last usage (UTC). |
-| meta | mysql: JSON / postgres: JSONB | YES |  | Additional JSON metadata. |
-| replaced_by | BIGINT | YES |  | Newer token id (token rotation). |
-| revoked | BOOLEAN | NO | mysql: 0 / postgres: FALSE | Revocation flag. |
-| scopes | VARCHAR(255) | YES |  | Space/comma separated scopes. |
+| user_id | BIGINT | YES |  | User (FK users.id), optional. |
 | token_hash | mysql: BINARY(32) / postgres: BYTEA | NO |  | Hashed token. |
 | token_hash_algo | VARCHAR(50) | YES |  | Hash algorithm. |
 | token_hash_key_version | VARCHAR(64) | YES |  | Key version used for token hashing. |
 | type | mysql: ENUM('refresh','api') / postgres: TEXT | NO | refresh | Token kind. (enum: refresh, api) |
-| user_id | BIGINT | YES |  | User (FK users.id), optional. |
+| scopes | VARCHAR(255) | YES |  | Space/comma separated scopes. |
+| created_at | mysql: DATETIME(6) / postgres: TIMESTAMPTZ(6) | NO | CURRENT_TIMESTAMP(6) | Creation timestamp (UTC). |
+| expires_at | mysql: DATETIME(6) / postgres: TIMESTAMPTZ(6) | YES |  | Expiration timestamp (UTC). |
+| last_used_at | mysql: DATETIME(6) / postgres: TIMESTAMPTZ(6) | YES |  | Last usage (UTC). |
+| ip_hash | mysql: BINARY(32) / postgres: BYTEA | YES |  | Hashed client IP. |
+| ip_hash_key_version | VARCHAR(64) | YES |  | Key version for ip_hash. |
+| replaced_by | BIGINT | YES |  | Newer token id (token rotation). |
+| revoked | BOOLEAN | NO | mysql: 0 / postgres: FALSE | Revocation flag. |
+| meta | mysql: JSON / postgres: JSONB | YES |  | Additional JSON metadata. |
 
 ## Engine Details
 
