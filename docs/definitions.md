@@ -5,21 +5,21 @@ Refresh/API token registry with revocation support.
 ## Columns
 | Column | Type | Null | Default | Description |
 | --- | --- | --- | --- | --- |
-| created_at | DATETIME(6) | NO | CURRENT_TIMESTAMP(6) | Creation timestamp (UTC). |
-| expires_at | DATETIME(6) | YES |  | Expiration timestamp (UTC). |
+| created_at | mysql: DATETIME(6) / postgres: TIMESTAMPTZ(6) | NO | CURRENT_TIMESTAMP(6) | Creation timestamp (UTC). |
+| expires_at | mysql: DATETIME(6) / postgres: TIMESTAMPTZ(6) | YES |  | Expiration timestamp (UTC). |
 | id | BIGINT | NO |  | Surrogate primary key. |
-| ip_hash | BINARY(32) | YES |  | Hashed client IP. |
+| ip_hash | mysql: BINARY(32) / postgres: BYTEA | YES |  | Hashed client IP. |
 | ip_hash_key_version | VARCHAR(64) | YES |  | Key version for ip_hash. |
 | jti | CHAR(36) | NO |  | JWT ID (unique). |
-| last_used_at | DATETIME(6) | YES |  | Last usage (UTC). |
-| meta | JSON | YES |  | Additional JSON metadata. |
+| last_used_at | mysql: DATETIME(6) / postgres: TIMESTAMPTZ(6) | YES |  | Last usage (UTC). |
+| meta | mysql: JSON / postgres: JSONB | YES |  | Additional JSON metadata. |
 | replaced_by | BIGINT | YES |  | Newer token id (token rotation). |
-| revoked | BOOLEAN | NO | 0 | Revocation flag. |
+| revoked | BOOLEAN | NO | FALSE | Revocation flag. |
 | scopes | VARCHAR(255) | YES |  | Space/comma separated scopes. |
-| token_hash | BINARY(32) | NO |  | Hashed token. |
+| token_hash | mysql: BINARY(32) / postgres: BYTEA | NO |  | Hashed token. |
 | token_hash_algo | VARCHAR(50) | YES |  | Hash algorithm. |
 | token_hash_key_version | VARCHAR(64) | YES |  | Key version used for token hashing. |
-| type | ENUM('refresh','api') | NO | refresh | Token kind. (enum: refresh, api) |
+| type | mysql: ENUM('refresh','api') / postgres: TEXT | NO | refresh | Token kind. (enum: refresh, api) |
 | user_id | BIGINT | YES |  | User (FK users.id), optional. |
 
 ## Engine Details

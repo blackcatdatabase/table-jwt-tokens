@@ -101,7 +101,7 @@ _No engine differences detected._
 
 ## Constraints Snapshot
 - `created_at` – default=CURRENT_TIMESTAMP(6)
-- `revoked` – default=0
+- `revoked` – default=FALSE
 - `type` – default=refresh, enum
 
 ## Schema Files
