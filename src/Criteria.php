@@ -41,11 +41,11 @@ final class Criteria extends BaseCriteria
         return [ 'jti', 'token_hash_algo', 'token_hash_key_version', 'scopes', 'ip_hash_key_version' ];
     }
 
-/** Columns allowed in ORDER BY (falls back to filterable() when empty). */
-protected function sortable(): array
-{
-    return [ 'id', 'jti', 'user_id', 'token_hash_algo', 'token_hash_key_version', 'type', 'scopes', 'created_at', 'version', 'expires_at', 'last_used_at', 'ip_hash_key_version', 'replaced_by', 'revoked' ];
-}
+    /** Columns allowed in ORDER BY (falls back to filterable() when empty). */
+    protected function sortable(): array
+    {
+        return [ 'id', 'jti', 'user_id', 'token_hash_algo', 'token_hash_key_version', 'type', 'scopes', 'created_at', 'version', 'expires_at', 'last_used_at', 'ip_hash_key_version', 'replaced_by', 'revoked' ];
+    }
 
     /**
      * Whitelist of joinable entities (for safe ->join() usage):
