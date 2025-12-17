@@ -252,6 +252,7 @@ use OrderByTools, PkTools, RepositoryHelpers;
           ));
           if (!$rows) { return 0; }
 
+          /** @var list<string> $updCols */
           $updCols = [ 'jti', 'user_id', 'token_hash_algo', 'token_hash_key_version', 'type', 'scopes', 'expires_at', 'last_used_at', 'ip_hash', 'ip_hash_key_version', 'replaced_by', 'revoked', 'meta' ];
           if ($updCols && $soft && !in_array($soft, $updCols, true)) { $updCols[] = $soft; }
 
