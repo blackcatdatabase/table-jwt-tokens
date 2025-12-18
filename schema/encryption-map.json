@@ -1,0 +1,65 @@
+{
+  "tables": {
+    "jwt_tokens": {
+      "columns": {
+        "created_at": {
+          "strategy": "passthrough"
+        },
+        "expires_at": {
+          "strategy": "passthrough"
+        },
+        "id": {
+          "strategy": "passthrough"
+        },
+        "ip_hash": {
+          "context": "db.hmac.jwt_tokens.ip_hash",
+          "key_version_column": "ip_hash_key_version",
+          "strategy": "hmac",
+          "write_key_version": true
+        },
+        "ip_hash_key_version": {
+          "strategy": "passthrough"
+        },
+        "jti": {
+          "strategy": "passthrough"
+        },
+        "last_used_at": {
+          "strategy": "passthrough"
+        },
+        "meta": {
+          "strategy": "passthrough"
+        },
+        "replaced_by": {
+          "strategy": "passthrough"
+        },
+        "revoked": {
+          "strategy": "passthrough"
+        },
+        "scopes": {
+          "strategy": "passthrough"
+        },
+        "token_hash": {
+          "context": "db.hmac.jwt_tokens.token_hash",
+          "key_version_column": "token_hash_key_version",
+          "strategy": "hmac",
+          "write_key_version": true
+        },
+        "token_hash_algo": {
+          "strategy": "passthrough"
+        },
+        "token_hash_key_version": {
+          "strategy": "passthrough"
+        },
+        "type": {
+          "strategy": "passthrough"
+        },
+        "user_id": {
+          "strategy": "passthrough"
+        },
+        "version": {
+          "strategy": "passthrough"
+        }
+      }
+    }
+  }
+}
